@@ -1,13 +1,13 @@
 import React from 'react'
 import AppLayout from '../components/appLayout/appLayout'
 
-const Signup = () => {
+const EditProfile = () => {
   return (
     <>
       <AppLayout></AppLayout>
-      <h1>Signup</h1>
+      <h1>EditProfile</h1>
     </>
   )
 }
 
-export default Signup
+export default EditProfile

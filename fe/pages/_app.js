@@ -1,11 +1,14 @@
 import React from 'react'
-import Navigator from '../components/navigator'
+import Head from 'next/head'
+import 'antd/dist/antd.css'
 
 const MyApp = (props) => {
   return (
     <>
-      <Navigator></Navigator>
-      <h1>My App</h1>
+      <Head>
+        <title>CNA Playground</title>
+      </Head>
+
       <props.Component></props.Component>
     </>
   )
