@@ -1,6 +1,7 @@
 import React from 'react'
 import Head from 'next/head'
 import 'antd/dist/antd.css'
+import store from '../store/store'
 
 const MyApp = (props) => {
   return (
@@ -9,7 +10,7 @@ const MyApp = (props) => {
         <title>CNA Playground</title>
       </Head>
 
-      <props.Component></props.Component>
+      <props.Component store={store}></props.Component>
     </>
   )
 }

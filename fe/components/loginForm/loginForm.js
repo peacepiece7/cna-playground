@@ -1,16 +1,22 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useRef } from 'react'
 import { Form, Input, Button, Checkbox } from 'antd'
 
 const LoginForm = () => {
-  const handleFormSuccess = useCallback((v) => {
-    console.log('success ', v)
+  const [form] = Form.useForm()
+
+  const onFinish = useCallback((v) => {
+    console.log('success ', v.username, v.password)
+    form.resetFields()
   }, [])
+
   const handleFormFailure = useCallback((v) => {
     console.log('failure ', v)
   }, [])
+
   return (
     <>
       <Form
+        form={form}
         name="basic"
         labelCol={{
           span: 8,
@@ -21,7 +27,7 @@ const LoginForm = () => {
         initialValues={{
           remember: true,
         }}
-        onFinish={handleFormSuccess}
+        onFinish={onFinish}
         onFinishFailed={handleFormFailure}
         autoComplete="off"
       >

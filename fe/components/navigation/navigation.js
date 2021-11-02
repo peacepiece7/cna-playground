@@ -11,10 +11,10 @@ const Navigation = () => {
         <Link href="/">Home</Link>
       </Menu.Item>
       <Menu.Item className={styles.link}>
-        <Link href="/profile">profile</Link>
+        <Link href="/profile">Profile</Link>
       </Menu.Item>
       <Menu.Item className={styles.link}>
-        <Link href="/signup">signup</Link>
+        <Link href="/signup">Sign up</Link>
       </Menu.Item>
     </Menu>
   )
