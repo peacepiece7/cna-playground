@@ -1,6 +1,8 @@
 import React, { useCallback } from 'react'
 import styled from 'styled-components'
 import { Input } from 'antd'
+import { useDispatch, useSelector } from 'react-redux'
+import { increseAction } from '../../reducer/counter'
 
 const WrrapedInput = styled(Input.TextArea)`
   width: 80%;
@@ -16,14 +18,26 @@ const Wrraper = styled.div`
 `
 
 const PostForm = ({}) => {
+  const { count } = useSelector((state) => {
+    return state.counter
+  })
+  const dispatch = useDispatch()
   //
-  const handleChange = useCallback(() => {})
+  const handleChange = useCallback(() => {
+    console.log('dispatch')
+    console.log('cur', count)
+    dispatch(increseAction({ count }))
+  })
 
   return (
     <>
       <div>Post Form</div>
       <Wrraper>
-        <WrrapedInput maxLength={100} showCount onChange={handleChange}></WrrapedInput>
+        <WrrapedInput
+          maxLength={100}
+          showCount
+          onChange={handleChange}
+        ></WrrapedInput>
       </Wrraper>
     </>
   )
