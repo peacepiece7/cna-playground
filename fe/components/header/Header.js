@@ -3,12 +3,12 @@ import PropTypes from 'prop-types'
 import Link from 'next/link'
 import styles from './header.module.css'
 
-const Header = ({ title }) => {
+const Header = ({ children }) => {
   return (
     <header className={styles.header}>
       <div className={styles.container}>
         <h3 className={styles.siteName}>NODE BIRD</h3>
-        <h3 className={styles.title}>{title}</h3>
+        <h3 className={styles.title}>{children}</h3>
       </div>
       <div>
         <button>

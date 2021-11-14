@@ -4,15 +4,14 @@ import { Row, Col } from 'antd'
 import { useSelector } from 'react-redux'
 import styles from './AppLayout.module.css'
 
-import Header from '../header/Header'
 import LoginForm from '../LoginForm/LoginForm'
 import UserProfile from '../UserProfile/UserProfile'
 import { useDispatch } from 'react-redux'
 
-import { actionLogIn } from '../../store/module/user'
-import { actionLogOut } from '../../store/module/user'
+import { actionLogInRequest } from '../../store/module/user'
+import { actionLogOutRequest } from '../../store/module/user'
 
-const AppLayout = (props) => {
+const AppLayout = () => {
   const dispatch = useDispatch()
 
   const isLoggedIn = useSelector((state) => {
@@ -20,25 +19,24 @@ const AppLayout = (props) => {
   })
 
   const onUserLogIn = (me) => {
-    dispatch(actionLogIn({ me }))
+    dispatch(actionLogInRequest({ me }))
   }
 
   const onUserLogOut = () => {
-    dispatch(actionLogOut({}))
+    dispatch(actionLogOutRequest({}))
   }
 
   return (
     <>
-      <Header title={props.children}></Header>
       <Row gutter={{ xs: 8, md: 24, lg: 32 }}>
         <Col span={6}>
-          <sider className={styles.sider}>
+          <div className={styles.sider}>
             {isLoggedIn ? (
               <UserProfile onUserLogOut={onUserLogOut}></UserProfile>
             ) : (
               <LoginForm onUserLogIn={onUserLogIn}></LoginForm>
             )}
-          </sider>
+          </div>
         </Col>
         <Col span={18}>
           <section className={styles.container}>posts & notics are here!</section>

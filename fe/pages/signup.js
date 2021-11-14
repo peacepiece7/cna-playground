@@ -1,10 +1,11 @@
 import React from 'react'
-import AppLayout from '../components/AppLayout/AppLayout'
+import Header from '../components/header/Header'
 
 const SignUp = () => {
   return (
     <>
-      <AppLayout>Sign up</AppLayout>
+      <Header>Sign up</Header>
+      <div>form section</div>
     </>
   )
 }
