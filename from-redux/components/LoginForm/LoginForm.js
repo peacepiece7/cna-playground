@@ -4,19 +4,22 @@ import PropTypes from 'prop-types'
 
 import styles from './LoginForm.module.css'
 
-const LoginForm = ({ onUserLogIn }) => {
+const LoginForm = ({ onUserData }) => {
   const [username, setUsername] = useState(null)
   const [password, setPassword] = useState(null)
 
   const onFinish = () => {
-    onUserLogIn({
-      id: Date.now(),
-      nickname: username,
-      password: password,
+    onUserData({
+      isLoggedIn: true,
+      user: {
+        nickname: username,
+        password: password,
+      },
     })
   }
 
   // Will be dispatched user data
+
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo)
   }
