@@ -1,33 +1,37 @@
-import React, { useState } from 'react'
-import { Form, Input, Button, Checkbox } from 'antd'
-import PropTypes from 'prop-types'
+import React, { useState } from "react";
+import { Form, Input, Button, Checkbox } from "antd";
+import { useDispatch } from "react-redux";
+import styles from "./LoginForm.module.css";
 
-import styles from './LoginForm.module.css'
+import { actionLogInRequest } from "../../store/module/user";
 
-const LoginForm = ({ onUserLogIn }) => {
-  const [username, setUsername] = useState(null)
-  const [password, setPassword] = useState(null)
+const LoginForm = () => {
+  const [username, setUsername] = useState(null);
+  const [password, setPassword] = useState(null);
+  const dispatch = useDispatch();
 
   const onFinish = () => {
-    onUserLogIn({
-      id: Date.now(),
-      nickname: username,
-      password: password,
-    })
-  }
+    dispatch(
+      actionLogInRequest({
+        id: Date.now(),
+        nickname: username,
+        password,
+      })
+    );
+  };
 
   // Will be dispatched user data
   const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo)
-  }
+    console.log("Failed:", errorInfo);
+  };
   const onChangeValue = (e) => {
-    if (e.target.id === 'basic_username') {
-      setUsername(e.target.value)
+    if (e.target.id === "basic_username") {
+      setUsername(e.target.value);
     }
-    if (e.target.id === 'basic_password') {
-      setPassword(e.target.value)
+    if (e.target.id === "basic_password") {
+      setPassword(e.target.value);
     }
-  }
+  };
 
   return (
     <Form
@@ -52,7 +56,7 @@ const LoginForm = ({ onUserLogIn }) => {
         name="username"
         rules={[
           {
-            message: 'Please input your username!',
+            message: "Please input your username!",
           },
         ]}
       >
@@ -65,7 +69,7 @@ const LoginForm = ({ onUserLogIn }) => {
         name="password"
         rules={[
           {
-            message: 'Please input your password',
+            message: "Please input your password",
           },
         ]}
       >
@@ -94,11 +98,7 @@ const LoginForm = ({ onUserLogIn }) => {
         </Button>
       </Form.Item>
     </Form>
-  )
-}
+  );
+};
 
-LoginForm.propTypes = {
-  onUserData: PropTypes.func,
-}
-
-export default LoginForm
+export default LoginForm;

@@ -1,5 +1,5 @@
-import React from 'react'
-import Header from '../components/header/Header'
+import React from "react";
+import Header from "../components/header/Header";
 
 const SignUp = () => {
   return (
@@ -7,7 +7,7 @@ const SignUp = () => {
       <Header>Sign up</Header>
       <div>form section</div>
     </>
-  )
-}
+  );
+};
 
-export default SignUp
+export default SignUp;
