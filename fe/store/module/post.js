@@ -1,3 +1,5 @@
+import { produce } from "immer";
+
 const initialState = {
   mainPosts: [
     {
@@ -37,36 +39,28 @@ export const actionAddPostRequest = (data) => {
   };
 };
 
-const post = (state = initialState, { data, error, type } = {}) => {
-  switch (type) {
-    // ADD POST CASES
-    case ADD_POST_REQUEST: {
-      return {
-        ...state,
-        addPostLoading: true,
-        addpostDone: false,
-        addPostError: null,
-      };
+const post = (state = initialState, { data, error, type } = {}) =>
+  // eslint-disable-next-line consistent-return
+  produce(state, (draft) => {
+    switch (type) {
+      // ADD POST CASES
+      case ADD_POST_REQUEST:
+        draft.addPostLoading = true;
+        draft.addpostDone = false;
+        draft.addPostError = null;
+        break;
+      case ADD_POST_SUCCESS:
+        draft.data = data;
+        draft.addPostDone = true;
+        draft.addPostLoading = false;
+        break;
+      case ADD_POST_FAILURE:
+        draft.addPostLoading = false;
+        draft.addPostError = error;
+        break;
+      default:
+        return draft;
     }
-    case ADD_POST_SUCCESS: {
-      return {
-        ...state,
-        data,
-        addPostDone: true,
-        addPostLoading: false,
-      };
-    }
-    case ADD_POST_FAILURE: {
-      return {
-        ...state,
-        addPostLoading: false,
-        addPostError: error,
-      };
-    }
-    default: {
-      return { ...state };
-    }
-  }
-};
+  });
 
 export default post;

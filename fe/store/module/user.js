@@ -1,3 +1,5 @@
+import { produce } from "immer";
+
 export const initialState = {
   me: null,
   logInDone: false,
@@ -31,60 +33,46 @@ export const actionLogOutRequest = (data) => {
 };
 
 // immutation을 지켜주면서 객체를 함쳐줄 것
-const user = (state = initialState, { type, data, error } = {}) => {
-  switch (type) {
-    // LOGIN CASES
-    case LOG_IN_REQUEST:
-      return {
-        ...state,
-        logInDone: false,
-        logInLoading: true,
-        logInError: null,
-      };
-    case LOG_IN_SUCCESS: {
-      return {
-        ...state,
-        me: {
+const user = (state = initialState, { type, data, error } = {}) =>
+  // eslint-disable-next-line consistent-return
+  produce(state, (draft) => {
+    switch (type) {
+      // LOGIN CASES
+      case LOG_IN_REQUEST:
+        draft.logInDone = false;
+        draft.logInLoading = true;
+        draft.logInError = null;
+        break;
+      case LOG_IN_SUCCESS:
+        draft.me = {
           id: data.id,
           nickname: data.nickname,
           password: data.password,
-        },
-        logInLoading: false,
-        logInDone: true,
-      };
+        };
+        draft.logInLoading = false;
+        draft.logInDone = true;
+        break;
+      case LOG_IN_FAILURE:
+        draft.logInLoading = false;
+        draft.logInError = error;
+        break;
+      // LOGOUT CASES
+      case LOG_OUT_REQUEST:
+        draft.logOutDone = false;
+        draft.logOutLoading = true;
+        draft.logOutError = null;
+        break;
+      case LOG_OUT_SUCCESS:
+        draft.me = null;
+        draft.logOutDone = true;
+        draft.logOutLoading = false;
+        break;
+      case LOG_OUT_FAILURE:
+        draft.logOutLoading = false;
+        draft.logOutError = error;
+        break;
+      default:
+        return draft;
     }
-    case LOG_IN_FAILURE:
-      return {
-        ...state,
-        logInLoading: false,
-        logInError: error,
-      };
-    // LOGOUT CASES
-    case LOG_OUT_REQUEST:
-      return {
-        ...state,
-        logOutDone: false,
-        logOutLoading: true,
-        logOutError: null,
-      };
-    case LOG_OUT_SUCCESS:
-      return {
-        ...state,
-        me: null,
-        logOutDone: true,
-        logOutLoading: false,
-      };
-    case LOG_OUT_FAILURE:
-      return {
-        ...state,
-        logOutLoading: false,
-        logOutError: error,
-      };
-
-    default:
-      return {
-        ...state,
-      };
-  }
-};
+  });
 export default user;
