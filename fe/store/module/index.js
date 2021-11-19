@@ -3,6 +3,7 @@ import { combineReducers } from "redux";
 
 import user from "./user";
 import post from "./post";
+import video from "./video";
 
 const rootReducer = combineReducers({
   index: (state = {}, { type, payload } = {}) => {
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   },
   user,
   post,
+  video,
 });
 
 export default rootReducer;
