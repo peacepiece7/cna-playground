@@ -1,9 +1,9 @@
 import { HYDRATE } from "next-redux-wrapper";
 import { combineReducers } from "redux";
 
-import user from "./user";
-import post from "./post";
-import video from "./video";
+import users from "./users";
+import posts from "./posts";
+import videos from "./videos";
 
 const rootReducer = combineReducers({
   index: (state = {}, { type, payload } = {}) => {
@@ -14,9 +14,9 @@ const rootReducer = combineReducers({
         return { ...state };
     }
   },
-  user,
-  post,
-  video,
+  users,
+  posts,
+  videos,
 });
 
 export default rootReducer;

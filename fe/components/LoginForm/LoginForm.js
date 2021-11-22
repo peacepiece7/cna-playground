@@ -3,7 +3,7 @@ import { Form, Input, Button, Checkbox } from "antd";
 import { useDispatch } from "react-redux";
 import styles from "./LoginForm.module.css";
 
-import { actionLogInRequest } from "../../store/module/user";
+import { actionLogInRequest } from "../../store/module/users";
 
 const LoginForm = () => {
   const [username, setUsername] = useState(null);

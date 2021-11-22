@@ -7,8 +7,9 @@ import YouTube from "../service/youtube";
 import wrapper from "../store/index";
 
 const youtube = new YouTube(
-  process.env.NEXT_PUBLIC_YOUTUBE_APU_KEY || process.env.YOUTUBE_APU_KEY
+  process.env.NEXT_PUBLIC_YOUTUBE_API_KEY || process.env.YOUTUBE_API_KEY
 );
+
 // BE만들어서 CORS해결하고 써야 함..
 
 const MyApp = ({ Component }) => {

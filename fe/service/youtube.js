@@ -10,20 +10,6 @@ class YouTube {
   }
 
   async getLoading() {
-    // const config = {
-    //   method: "get",
-    //   url: "https://youtube.googleapis.com/youtube/v3?AIzaSyBVHAnrthQ31LMqBRaWYb4BGAYGXHvKd18&part=snippet&chart=mostPopular&maxResults=25",
-    //   headers: {},
-    // };
-
-    // axios(config)
-    //   .then(function (response) {
-    //     console.log(JSON.stringify(response.data));
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   });
-
     const response = await this.youtube.get("vidoes", {
       params: {
         part: "snippet",
@@ -31,7 +17,14 @@ class YouTube {
         maxResults: 25,
       },
     });
+    console.log("RESPONSE ARE :", response);
+    console.log("RESPONSE HAS DATA BELOW : ", response.data);
     return response.data.items;
+  }
+
+  testing() {
+    console.log(this.key);
+    console.log("ok it`s connected!");
   }
 }
 

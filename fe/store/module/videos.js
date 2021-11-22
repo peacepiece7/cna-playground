@@ -1,5 +1,6 @@
 import { produce } from "immer";
 import { lorem } from "faker";
+import { nanoid } from "nanoid";
 
 // videoId = items[index].id
 // title  = items[index].snippet.title
@@ -8,75 +9,35 @@ import { lorem } from "faker";
 // thumnails = items[index].snippet.thumnails
 
 const initialState = {
-  Videos: [
+  MainVideos: [
     {
-      videoId: "A66ABB33CC",
+      videoId: nanoid(),
       title: lorem.words(),
       tags: [lorem.word(), lorem.word(), lorem.word()],
       description: lorem.paragraphs(),
       thumbnails: {
         default: {
-          url: "https://i.ytimg.com/vi/mlUIoA6NHxw/default.jpg",
+          url: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
           width: 120,
           height: 90,
-        },
-        medium: {
-          url: "https://i.ytimg.com/vi/mlUIoA6NHxw/mqdefault.jpg",
-          width: 320,
-          height: 180,
-        },
-        high: {
-          url: "https://i.ytimg.com/vi/mlUIoA6NHxw/hqdefault.jpg",
-          width: 480,
-          height: 360,
-        },
-        standard: {
-          url: "https://i.ytimg.com/vi/mlUIoA6NHxw/sddefault.jpg",
-          width: 640,
-          height: 480,
-        },
-        maxres: {
-          url: "https://i.ytimg.com/vi/mlUIoA6NHxw/maxresdefault.jpg",
-          width: 1280,
-          height: 720,
         },
       },
     },
     {
-      videoId: "DDKSA123",
+      videoId: nanoid(),
       title: lorem.words(),
       tags: [lorem.word(), lorem.word(), lorem.word()],
       description: lorem.paragraphs(),
       thumbnails: {
         default: {
-          url: "https://i.ytimg.com/vi/mlUIoA6NHxw/default.jpg",
+          url: "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
           width: 120,
           height: 90,
-        },
-        medium: {
-          url: "https://i.ytimg.com/vi/mlUIoA6NHxw/mqdefault.jpg",
-          width: 320,
-          height: 180,
-        },
-        high: {
-          url: "https://i.ytimg.com/vi/mlUIoA6NHxw/hqdefault.jpg",
-          width: 480,
-          height: 360,
-        },
-        standard: {
-          url: "https://i.ytimg.com/vi/mlUIoA6NHxw/sddefault.jpg",
-          width: 640,
-          height: 480,
-        },
-        maxres: {
-          url: "https://i.ytimg.com/vi/mlUIoA6NHxw/maxresdefault.jpg",
-          width: 1280,
-          height: 720,
         },
       },
     },
   ],
-  loadVideoLoading: false,
+  loadVideoLoading: true,
   loadVideoDone: false,
   loadVideoError: null,
 };
@@ -84,6 +45,13 @@ const initialState = {
 export const LOAD_VIDEO_REQUEST = "LOAD_VIDEO_REQUEST";
 export const LOAD_VIDEO_SUCCESS = "LOAD_VIDEO_SUCCESS";
 export const LOAD_VIDEO_FAILURE = "LOAD_VIDEO_FAILURE";
+
+export const actionLoadVideoRequest = (data) => {
+  return {
+    type: LOAD_VIDEO_REQUEST,
+    data,
+  };
+};
 
 const videoReducer = (state = initialState, { type, error, data } = {}) =>
   // eslint-disable-next-line consistent-return

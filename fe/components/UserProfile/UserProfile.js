@@ -1,11 +1,11 @@
 import React, { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Form, Button } from "antd";
-import { actionLogOutRequest } from "../../store/module/user";
+import { actionLogOutRequest } from "../../store/module/users";
 
 const UserProfile = () => {
   const dispatch = useDispatch();
-  const nickname = useSelector((state) => state.user.me.nickname);
+  const nickname = useSelector((state) => state.users.me.nickname);
 
   const onLogout = useCallback(() => {
     dispatch(actionLogOutRequest({}));

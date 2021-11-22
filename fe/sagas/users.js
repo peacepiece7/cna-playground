@@ -6,7 +6,7 @@ import {
   LOG_OUT_FAILURE,
   LOG_OUT_REQUEST,
   LOG_OUT_SUCCESS,
-} from "../store/module/user";
+} from "../store/module/users";
 
 function* fetchLogIn(action) {
   try {
@@ -43,8 +43,8 @@ function* watchLogOut() {
   yield takeLatest(LOG_OUT_REQUEST, fetchLogOut);
 }
 
-function* user() {
+function* users() {
   yield all([fork(watchLogIn), fork(watchLogOut)]);
 }
 
-export default user;
+export default users;

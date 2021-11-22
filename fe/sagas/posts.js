@@ -3,7 +3,7 @@ import {
   ADD_POST_FAILURE,
   ADD_POST_REQUEST,
   ADD_POST_SUCCESS,
-} from "../store/module/post";
+} from "../store/module/posts";
 
 function* fetchAddPost(action) {
   try {
@@ -23,8 +23,8 @@ function* watchAddPost() {
   yield takeLatest(ADD_POST_REQUEST, fetchAddPost);
 }
 
-function* post() {
+function* posts() {
   yield all([fork(watchAddPost)]);
 }
 
-export default post;
+export default posts;

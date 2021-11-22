@@ -3,7 +3,7 @@ import {
   LOAD_VIDEO_FAILURE,
   LOAD_VIDEO_REQUEST,
   LOAD_VIDEO_SUCCESS,
-} from "../store/module/video";
+} from "../store/module/videos";
 
 function* fetchLoadVideo(action) {
   try {
@@ -23,8 +23,8 @@ function* watchLoadVideo() {
   yield takeLatest(LOAD_VIDEO_REQUEST, fetchLoadVideo);
 }
 
-function* video() {
+function* videos() {
   yield all([fork(watchLoadVideo)]);
 }
 
-export default video;
+export default videos;

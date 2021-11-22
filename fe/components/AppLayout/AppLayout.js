@@ -5,9 +5,12 @@ import styles from "./AppLayout.module.css";
 
 import LoginForm from "../LoginForm/LoginForm";
 import UserProfile from "../UserProfile/UserProfile";
+import VideoForm from "../VideoForm/VideoForm";
 
 const AppLayout = () => {
-  const { me } = useSelector((state) => state.user);
+  const { me } = useSelector((state) => state.users);
+  const { loadVideoLoading } = useSelector((state) => state.videos);
+  console.log("LOAD VIDEO LOADING :", loadVideoLoading);
 
   return (
     <Row gutter={{ xs: 8, md: 24, lg: 32 }}>
@@ -18,6 +21,7 @@ const AppLayout = () => {
       </Col>
       <Col span={18}>
         <section className={styles.container}>posts & notics are here!</section>
+        {loadVideoLoading ? <div>로딩중..</div> : <VideoForm />}
       </Col>
     </Row>
   );
