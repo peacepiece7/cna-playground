@@ -1,22 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 import styles from "./VideoForm.module.css";
 
 import Video from "../Video/Video";
 
-const VideoForm = () => {
-  const { MainVideos } = useSelector((state) => state.videos);
-  const [videos, setVideos] = useState({});
-  useEffect(() => {
-    setVideos((prev) => {
-      return { ...prev, ...MainVideos };
-    });
-  }, [MainVideos]);
-  console.log("video componenet props are : ", videos);
+const VideoForm = ({ mainVideos }) => {
+  // api -> request -> success -> data fetch 중, request일 때 데이터를 불러오는 문제..
+  const MainVideos = useSelector((state) => state.videos.MainVideos);
   return (
     <div className={styles.container}>
       {false &&
-        videos.map((v) => {
+        mainVideos.map((v) => {
           return <Video video={v} />;
         })}
     </div>
