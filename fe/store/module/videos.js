@@ -63,12 +63,11 @@ const videoReducer = (state = initialState, { type, error, data } = {}) =>
         draft.loadVideoError = null;
         break;
       case LOAD_VIDEO_SUCCESS:
-        draft.Videos = data;
+        draft.MainVideos = data;
         draft.loadVideoLoading = false;
         draft.loadVideoDone = true;
         break;
       case LOAD_VIDEO_FAILURE:
-        draft.Videos = draft;
         draft.loadVideoLoading = false;
         draft.loadVideoError = error;
         break;

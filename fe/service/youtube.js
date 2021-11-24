@@ -17,8 +17,7 @@ class YouTube {
         maxResults: 25,
       },
     });
-    console.log("RESPONSE ARE :", response);
-    console.log("RESPONSE HAS DATA BELOW : ", response.data);
+
     return response.data.items;
   }
 

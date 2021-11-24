@@ -10,7 +10,6 @@ import VideoForm from "../VideoForm/VideoForm";
 const AppLayout = () => {
   const { me } = useSelector((state) => state.users);
   const { loadVideoLoading } = useSelector((state) => state.videos);
-  console.log("LOAD VIDEO LOADING :", loadVideoLoading);
 
   return (
     <Row gutter={{ xs: 8, md: 24, lg: 32 }}>

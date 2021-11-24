@@ -21,8 +21,7 @@ const Home = () => {
         },
       })
       .then((res) => {
-        console.log("RESPONSE DATA ", res.data.items);
-        dispatch({ type: LOAD_VIDEO_REQUEST });
+        dispatch({ type: LOAD_VIDEO_REQUEST, data: res.data.items });
       });
     // CORS ERROR
     // const response = youtube.getLoading();
